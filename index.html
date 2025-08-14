@@ -14,7 +14,8 @@
     body, html {
       height: auto;
       font-family: 'Segoe UI', sans-serif;
-      overflow: visible;
+      overflow-x: hidden;
+      overflow-y: auto;
       background: linear-gradient(45deg, 
         #ff9a9e 0%, 
         #fecfef 25%, 
@@ -23,6 +24,7 @@
         #fed6e3 100%);
       background-size: 400% 400%;
       animation: gradientShift 8s ease infinite;
+      background-attachment: fixed;
     }
 
     @keyframes gradientShift {
@@ -360,19 +362,17 @@
       75% { transform: translateY(-30px) translateX(8px) rotate(1deg); }
     }
 
-    /* Enhanced photo layer with creative effects */
+    /* Enhanced image photo layout */
     .image-layer {
-      position: fixed;
-      top: 15;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      position: relative;
       z-index: 5;
       display: flex;
       flex-wrap: wrap;
       justify-content: space-around;
       align-items: center;
-      padding: 2rem;
+      padding: 50px 2rem;
+      margin-top: 30px;
+      margin-bottom: 50px;
       pointer-events: none;
     }
 
@@ -603,36 +603,6 @@
       100% { filter: hue-rotate(360deg) brightness(1); }
     }
 
-    /* Responsive design */
-    @media (max-width: 768px) {
-      .big-heart {
-        width: 500px;
-        height: 500px;
-      }
-      
-      .photo-slot {
-        width: 150px !important;
-        height: 200px !important;
-      }
-      
-      .left-photo, .extra-photo-2 {
-        height: 300px !important;
-      }
-      
-      .birthday-message {
-        padding: 30px;
-        margin: 20px;
-      }
-
-      .intro-title {
-        font-size: 2.2rem;
-      }
-
-      .intro-message {
-        font-size: 1.1rem;
-      }
-    }
-
     p {
       font-family: cursive;
       font-size: 18mm;
@@ -642,16 +612,25 @@
 
     p1 {
       font-family: cursive;
-      font-size: 6mm;
+      font-size: 5mm;
       color: rgb(0, 0, 0);
       text-align: center;
-      align-items: center;
-      margin-left: 30%;
-      margin-top: 15%;
+      display: block;
+      max-width: 100%;
+      position: relative;
+      z-index: 1000;
+    }
+
+    .wish {
+      text-align: center;
+      padding: 50px 20px;
+      margin-top: 20px;
+      z-index: 1000;
+      position: relative;
     }
 
     /* Surprise section styles */
-        .surprise-section {
+    .surprise-section {
       position: relative;
       z-index: 1000;
       text-align: center;
@@ -706,13 +685,15 @@
     /* Gift boxes container */
     .gifts-container {
       display: none;
-      justify-content: center;
-      flex-wrap: wrap;
+      grid-template-columns: repeat(3, 1fr);
       gap: 30px;
       margin-top: 40px;
       padding: 40px;
       opacity: 0;
       animation: fadeInGifts 1s ease-out forwards;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     @keyframes fadeInGifts {
@@ -722,6 +703,7 @@
     .gift-box {
       width: 120px;
       height: 120px;
+      margin-left: 30px;
       background: linear-gradient(45deg, #ff9a9e, #fecfef);
       border-radius: 15px;
       position: relative;
@@ -885,6 +867,58 @@
         transform: scale(1.1);
       }
     }
+
+    /* Responsive design */
+    @media (max-width: 768px) {
+      .big-heart {
+        width: 500px;
+        height: 500px;
+      }
+      
+      .photo-slot {
+        width: 150px !important;
+        height: 200px !important;
+      }
+      
+      .left-photo, .extra-photo-2 {
+        height: 300px !important;
+      }
+      
+      .birthday-message {
+        padding: 30px;
+        margin: 20px;
+      }
+
+      .intro-title {
+        font-size: 2.2rem;
+      }
+
+      .intro-message {
+        font-size: 1.1rem;
+      }
+
+      .gifts-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        padding: 20px;
+      }
+
+      .image-layer {
+        padding: 20px 1rem;
+      }
+
+      .wish {
+        padding: 30px 15px;
+      }
+
+      p {
+        font-size: 15mm;
+      }
+
+      p1 {
+        font-size: 5mm;
+      }
+    }
   </style>
 </head>
 <body>
@@ -946,9 +980,9 @@
     <div id="floating-cakes"></div>
 
     <div class="wish" style="align-items: center;">
-      <p>💓😍Happyyy Birthday ❣️ KALAI 💖💝</p>
+      <p>💓😍Happyyy Birthday ❣️ KALAI 💝</p>
     </div>
-    <p1> Edho ennala mudinja oru chinna gift for my Special Friend </p1>
+    <p1> Ennala mudinja oru chinna gift for my Special Friend </p1>
     
     <!-- Fixed image photo layout -->
     <div class="image-layer">
@@ -1294,7 +1328,7 @@
       
       setTimeout(() => {
         button.style.display = 'none';
-        giftsContainer.style.display = 'flex';
+        giftsContainer.style.display = 'grid';
         
         // Create celebration
         for (let i = 0; i < 20; i++) {
@@ -1382,5 +1416,4 @@
     window.addEventListener('beforeunload', stopAllAnimations);
   </script>
 </body>
-
 </html>
